@@ -3,6 +3,7 @@ layout: page
 <!-- title: About -->
 <!-- permalink: / -->
 ---
+### About me
 
 Hi, I 'm Vasilis, a front-ender from Athens, Greece.  
 

@@ -18,9 +18,18 @@ html {
 }
 
 body {
-	background: $white;
+	background: $darkGray;
   font: 16px/1.4 $helvetica;
-  color: $darkGray;
+  color: $jekyllfontcolor;
+  -webkit-box-shadow: inset 0 3px 30px rgba(0,0,0,0.3);
+  -moz-box-shadow: inset 0 3px 30px rgba(0,0,0,0.3);
+  box-shadow: inset 0 3px 30px rgba(0,0,0,0.3);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  -webkit-font-feature-settings: "kern" 1;
+  -moz-font-feature-settings: "kern" 1;
+  -o-font-feature-settings: "kern" 1;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
 }
 
 .container {
@@ -32,7 +41,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: $helveticaNeue;
-  color: $darkerGray;
+  color: $white;
   font-weight: bold;
 
   line-height: 1.7;
@@ -69,12 +78,13 @@ p {
 }
 
 a {
-  color: $blue;
+  color: $jekyllLinkcolor;
   text-decoration: none;
 	cursor: pointer;
-  &:hover, &:active {
-    color: $blue;
+  &:hover, &:active, &:focus {
+    color: $jekyllLinkcolorHover;
   }
+  @include transition;
 }
 
 ul, ol {
@@ -166,7 +176,7 @@ img {
 .site-avatar {
   float: left;
   width: 70px;
-  height: 70px;
+  height: 81px;
   margin-right: 15px;
 
   @include mobile {
@@ -192,17 +202,17 @@ img {
 
 .site-name {
   margin: 0;
-  color: $darkGray;
+  color: $jekyllfontcolor;
   cursor: pointer;
   font-family: $helveticaNeue;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 28px;
   letter-spacing: 1px;
 }
 
 .site-description {
   margin: -5px 0 0 0;
-  color: $gray;
+  color: $jekyllfontcolor;
   font-size: 16px;
 
   @include mobile {
@@ -273,14 +283,22 @@ nav {
 
 .wrapper-footer {
   margin-top: 50px;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  background-color: $lightGray;
+  // border-top: 1px solid #ddd;
+  // border-bottom: 1px solid #ddd;
+  background-color: $footerColor;
 }
 
 footer {
   padding: 20px 0;
   text-align: center;
+  a {
+    i {
+      @include transition;
+    }
+    &:hover {
+      i {-webkit-transform:scale(0.9);-ms-transform:scale(0.9);transform:scale(0.9)}
+    }
+  }
 }
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS

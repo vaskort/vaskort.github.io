@@ -13,6 +13,10 @@ $darkGray: #333;
 $gray: #666;
 $lightGray: #eee;
 $white: #fff;
+$jekyllfontcolor: #ddd;
+$jekyllLinkcolor: #fc0;
+$jekyllLinkcolorHover: #f90;
+$footerColor: #212121;
 
 // Font stacks
 $helvetica: Helvetica, Arial, sans-serif;
@@ -24,4 +28,9 @@ $georgia: Georgia, serif;
   @media screen and (max-width: 640px) {
     @content;
   }
+}
+
+@mixin transition {
+  -webkit-transition:all 0.5s;
+  transition:all 0.5s
 }
