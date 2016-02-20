@@ -5,13 +5,14 @@ layout: page
 ---
 
 Hi, I 'm Vasilis, a front-ender from Athens, Greece.  
-Recently, I enjoy being more active on GitHub and contributing.
+
+Lately, I enjoy being active on GitHub where I recently created a simple jQuery plugin for responsive tables, [respTables](https://github.com/vaskort/respTables).
 
 ### More Information
 
 I have more than 2 years of commercial experience working with the latest front-end technologies, delivering fully responsive, cross platform and multi-browser compatible solutions.
 
-I 'm currently working for [Atcom.](https://www.atcom.gr)  
+I 'm currently working for [Atcom](http://www.atcom.gr/).
 
 For more info check the links below or get in touch!
 
