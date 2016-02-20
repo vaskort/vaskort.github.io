@@ -291,7 +291,9 @@ nav {
 footer {
   padding: 20px 0;
   text-align: center;
+  height: 80px;
   a {
+    display: inline-block;
     i {
       @include transition;
     }

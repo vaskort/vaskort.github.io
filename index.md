@@ -13,7 +13,7 @@ Lately, I enjoy being active on GitHub where I recently created a simple jQuery 
 
 I have more than 2 years of commercial experience working with the latest front-end technologies, delivering fully responsive, cross platform and multi-browser compatible solutions.
 
-I 'm currently working for [Atcom](http://www.atcom.gr/).
+I 'm currently working for [Atcom](http://www.atcom.gr/) and in my free time I enjoy studying music and playing the guitar.
 
 For more info check the links below or get in touch!
 
