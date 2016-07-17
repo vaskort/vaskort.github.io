@@ -7,7 +7,7 @@ layout: page
 
 Hi, I 'm Vasilis, a front-ender from Athens, Greece currently based in London.  
 
-Lately, I enjoy being active on GitHub where I recently created a simple jQuery plugin for responsive tables, [respTables](https://github.com/vaskort/respTables) and other stuff as well.
+Lately, I enjoy being active on GitHub and learning new stuff from Udemy.
 
 ### More Information
 
