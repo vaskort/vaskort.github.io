@@ -30,6 +30,11 @@ body {
   -o-font-feature-settings: "kern" 1;
   font-feature-settings: "kern" 1;
   font-kerning: normal;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .container {
@@ -37,6 +42,12 @@ body {
   max-width: 740px;
   padding: 0 10px;
   width: 100%;
+}
+
+.siteContent {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -54,7 +65,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 30px;
+  font-size: 25px;
   a {
     color: inherit;
   }
@@ -131,14 +142,14 @@ img {
 }
 
 // Specify the color of the selection
-::-moz-selection {
-  color: $black;
-  background: $lightGray;
-}
-::selection {
-  color: $black;
-  background: $lightGray;
-}
+// ::-moz-selection {
+//   color: $black;
+//   background: $lightGray;
+// }
+// ::selection {
+//   color: $black;
+//   background: $lightGray;
+// }
 
 // Nicolas Gallagher's micro clearfix hack
 // http://nicolasgallagher.com/micro-clearfix-hack/
@@ -160,9 +171,14 @@ img {
 // .masthead
 //
 
-.wrapper-masthead {
-  margin-bottom: 50px;
-}
+// .wrapper-masthead {
+//   margin-bottom: 50px;
+// }
+// .spacedCaps {
+//   font-family: Avenir,Helvetica Neue,Helvetica,Arial,sans-serif;
+//   text-transform: uppercase;
+//   letter-spacing: .1em;
+// }
 
 .masthead {
   padding: 20px 0;
@@ -192,6 +208,7 @@ img {
 
 .site-info {
   float: left;
+  padding-top: 13px;
 
   @include mobile {
     float: none;
@@ -224,6 +241,7 @@ nav {
   float: right;
   margin-top: 23px; // @TODO: Vertically middle align
   font-family: $helveticaNeue;
+
   font-size: 18px;
 
   @include mobile {
@@ -235,10 +253,11 @@ nav {
 
   a {
     margin-left: 20px;
-    color: $darkGray;
+    color: $white;
     text-align: right;
     font-weight: 300;
     letter-spacing: 1px;
+    text-transform: uppercase;
 
     @include mobile {
       margin: 0 10px;
@@ -295,7 +314,7 @@ footer {
   a {
     display: inline-block;
     i {
-      @include transition;
+      @include footerTransition;
     }
     &:hover {
       i {-webkit-transform:scale(0.9);-ms-transform:scale(0.9);transform:scale(0.9)}
@@ -307,3 +326,4 @@ footer {
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import "highlights";
 @import "svg-icons";
+@import url('https://fonts.googleapis.com/css?family=Lato');

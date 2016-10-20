@@ -19,8 +19,8 @@ $jekyllLinkcolorHover: #f90;
 $footerColor: #212121;
 
 // Font stacks
-$helvetica: Helvetica, Arial, sans-serif;
-$helveticaNeue: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$helvetica: Lato, Helvetica, Arial, sans-serif;
+$helveticaNeue: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
 $georgia: Georgia, serif;
 
 // Mobile breakpoints
@@ -33,4 +33,9 @@ $georgia: Georgia, serif;
 @mixin transition {
   -webkit-transition:all 0.5s;
   transition:all 0.5s
+}
+
+@mixin footerTransition {
+  -webkit-transition:all 0.3s;
+  transition:all 0.3s
 }
