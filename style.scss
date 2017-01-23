@@ -189,6 +189,15 @@ img {
   }
 }
 
+.myself {
+  padding-top: 10px;
+  float: left;
+
+  @include mobile {
+    float: none;
+  }
+}
+
 .site-avatar {
   float: left;
   width: 70px;
