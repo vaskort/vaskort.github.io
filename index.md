@@ -7,7 +7,7 @@ layout: page
 
 Hi, I'm Vasilis, a front-ender from Athens, Greece currently based in London.  
 
-Lately I'm working on automated testing and ReactJS.
+Lately I'm working on automated testing, ReactJS and React Native.
 
 ### More Information
 
