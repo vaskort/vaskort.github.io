@@ -77,6 +77,9 @@ h2 {
 
 h3 {
   font-size: 20px;
+  @include mobile {
+    margin-top: 0;
+  }
 }
 
 h4 {
@@ -190,11 +193,13 @@ img {
 }
 
 .myself {
-  padding-top: 10px;
+  padding-top: 28px;
+  padding-bottom: 10px;
   float: left;
 
   @include mobile {
     float: none;
+    padding-top: 10px;
   }
 }
 
