@@ -6,13 +6,13 @@ layout: page
 
 Hi, I'm Vasilis, a front-ender from Athens, Greece currently based in London.  
 
-Lately I'm working on automated testing, ReactJS and React Native.
-
 ### More Information
 
-I have 3 years of commercial experience working with the latest front-end technologies, delivering fully responsive, cross platform and multi-browser compatible solutions.
+Lately I have been working mostly with React and automated testing, both unit and end-to-end but I still enjoy doing heavy JS/HTML/CSS work.
 
-I'm currently working for [Hopster](http://hopster.tv/) and in my free time I enjoy studying music and playing the guitar.
+I have 4 years of commercial experience working with the latest front-end technologies, delivering fully responsive, cross platform and multi-browser compatible solutions.
+
+I'm currently working for [ASOS](http://www.asos.com/) as part of the Content Platform Team and in my free time I enjoy playing the guitar and trying to stay fit.
 
 For more info check the links below or get in touch!
 
