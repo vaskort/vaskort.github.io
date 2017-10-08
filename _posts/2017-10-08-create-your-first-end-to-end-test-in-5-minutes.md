@@ -3,16 +3,14 @@ layout: post
 title: Create your first automated end-to-end test in 5 minutes (with Chimp JS)
 ---
 
-Before a few months I was assigned a project to create the structure for automated
-testing so we can . There were a few things that I should take into consideration to complete this project:
+About a year ago, while I was working at [Hopster](www.hopster.tv), I was assigned a project to create the structure for automated testing so we can test the functionality of some basic pages like registration, login etc. There were a few things that I should have taken into consideration to complete this project:
 
 - Create the end-to-end tests with a framework (obviously).
-- Add my tests to a pre-existing Jenkins server for CI (Continuous Integration - yep I
-  didn't know what that meant in the beginning).
-- Be able to trigger a Jenkins job when I push to develop.
+- Create a Jenkins job to a pre-existing Jenkins server
+- Be able to trigger the Jenkins job whenever I pushed to develop branch.
 - Send a success/fail message to a particular channel on Slack if the test passed/failed.
 
-I will try to cover the first bullet in this post.
+I will try to cover the first bullet in this post, the development of the end-to-end tests.
 
 ### The framework to create the tests
 
@@ -21,7 +19,7 @@ Also I used [Cucumber.js](https://cucumber.io/) to write the acceptance/end-to-e
 
 ### Installation
 
-So lets get started, lets install ChimpJS (its better install it globally)
+So lets get started, lets install ChimpJS (its better to install it globally)
 
 {% highlight bash %}
   $ npm install -g chimp
@@ -59,7 +57,7 @@ Let's define the test in our feature file.
     Then I should see the search term on top of the next page
 {% endhighlight %}
 
-Check a very useful article about gherkin syntax and some good practises of how to create feature files and BDD [here](http://www.bbc.co.uk/blogs/internet/entries/ff14236d-098a-3565-b678-ff4ba5776a5f).
+Check a very useful article on how to to create a feature file [here](http://www.bbc.co.uk/blogs/internet/entries/ff14236d-098a-3565-b678-ff4ba5776a5f).
 
 ### Test file (Step definition)
 
@@ -124,7 +122,10 @@ Hopefully we would see something like the following
 
 Congratulations you made your first simple end-to-end test! 
 
-Clone the full code from GitHub: [https://github.com/vaskort/chimp-test](https://github.com/vaskort/chimp-test)
+### Notes - Links
+Full code on GitHub: [https://github.com/vaskort/chimp-test](https://github.com/vaskort/chimp-test)  
+Chimp JS documentation: [https://chimp.readme.io/](https://chimp.readme.io/)  
+Chimp JS Slack channel: [http://community.xolv.io/](http://community.xolv.io/)
 
 
 
