@@ -9,7 +9,7 @@ name: Vasilis Kortsimelidis
 description: Front-end Engineer
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: /images/vaskort3.jpg
+avatar: /images/vas.jpg
 
 #
 # Flags below are optional
@@ -68,6 +68,7 @@ sass:
 plugins:
   - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
   - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
+  - jemoji
 
 # Exclude these files from your production _site
 exclude:
