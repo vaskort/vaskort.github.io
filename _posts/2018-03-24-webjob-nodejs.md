@@ -48,7 +48,7 @@ After adding the `settings.job` you should be able to see your CRON expression a
 
 ### Continuous Webjob
 
-Great, we have added a triggered webjob and set up how often will it run. You can follow the same process to add a continuous webjob. The difference between the two is that the continuous one will run only once its created. If you want it to run endlessy you have to handle that inside your code.  
+Great, we have added a triggered webjob and set up how often it will run. You can follow the same process to add a continuous webjob. The difference between the two is that the continuous one will run only once its created. If you want it to run endlessly you have to handle that inside your code.  
 
 So the full folder structure for our two webjobs would be:
 
