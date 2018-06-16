@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to pass the Microsoft Azure 70-532 certification
+title: How to prepare for the Microsoft Azure 70-532 certification
 ---
 
 Microsoft has a few certifications for Azure and one of them is the "70-532 Developing Microsoft Azure Solutions" which is mainly targeted for developers. I will try to make a breakdown of the steps I followed that helped me pass the exam.
