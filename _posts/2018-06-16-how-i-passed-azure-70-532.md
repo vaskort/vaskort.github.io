@@ -5,7 +5,7 @@ title: How to pass the Microsoft Azure 70-532 certification
 
 Microsoft has a few certifications for Azure and one of them is the "70-532 Developing Microsoft Azure Solutions" which is mainly targeted for developers. I will try to make a breakdown of the steps I followed that helped me pass the exam.
 
-### Get the latest updated for the exam
+### Get the latest updates
 
 All the Azure certifications get updated very often (every 3 months approximately) so go to [Microsoft Azure page](https://www.microsoft.com/en-gb/learning/exam-70-532.aspx) and search for "Exam 532 change document". You will then find the link that links to the pdf with the latest changes.
 
