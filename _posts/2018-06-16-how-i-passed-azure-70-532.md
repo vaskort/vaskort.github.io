@@ -19,11 +19,11 @@ Another very helpful course was this one from Pluralsight: [https://app.pluralsi
 
 ![Pluralsight screenshot]({{ "https://vaskort.github.io/images/azure-screenshot.jpg" | absolute_url }})
 
-*Don't forget to revisit the change document because some of the sections of the courses has might have been removed from the actual exam*.
+*Don't forget to revisit the change document because some of the sections of the courses might have been removed from the actual exam*.
 
 ### Book your exam date
 
-I know, even after completing the Udemy course you don't feel like you can pass the exam and that's true! But if you have an exam date set, it will keep your motivation high and it will stop you from procrastinating your study. And don't worry you can always reschedule for free 5 days before the exam and push back your exam date.
+I know, even after completing the Udemy course you don't feel like you can pass the exam and that's true! But if you have an exam date set, it will keep your motivation high and it will stop you from procrastinating your study. And don't worry, you can always reschedule for free 5 days before the exam and push back your exam date.
 
 At this point after you finished the Udemy course I believe you can be ready to pass the exam in 1 - 1,5 month if you study around 15 hours per week, that's how it worked for me.
 
@@ -39,7 +39,7 @@ The exam preparation video will help you identify the key points where you shoul
 
 Now its time to practice with online tests either with the Kanplan test or the one from MeasureUp. 
 
-It can be very overwhelming if you practice the full exam with random questions so what worked great for me was to practice each section separately. Choose to get questions only from the first section and only go to the second one when you reach 70%. When you finish the 4th section repeat the process as many times as you feel comfortable.
+It can be very overwhelming if you practice the full exam with random questions so what worked great for me was to practice each section separately. Choose to get questions only from the first section and only go to the second one when you reach 70% score. When you finish the 4th section repeat the process as many times as you feel comfortable.
 
 Also don't forget to choose the option to "Show Answer Explanation" so whenever you give the wrong answer you can read the explanation right away and follow the links for further study. 
 
@@ -47,11 +47,9 @@ The answer explanations is maybe the most important thing in your preparation be
 
 ### You're ready!
 
-At this point you should be ready to pass the exam. The only thing you have to do is to be well rested on the day of the exam because its quite a long one (it was 3 hours for me). 
+At this point you should be ready to pass the exam. The only thing you have to do is to be well rested on the day of the exam because its quite a long one (it was around 3 hours). Some feel it's a lot of time but it depends how quickly you're going to answer as the case study questions might take a while (one case study took me 30 minutes to answer!).
 
-Some feel it's a lot of time but it depends how quickly you're going to answer as the case study questions might take a while (one case study took me 30 minutes to answer!).
-
-I really hope you found this guide helpful and good luck!
+I really hope you found this guide helpful and good luck on your exam!
 
 ###### Useful links
 
