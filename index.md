@@ -12,7 +12,7 @@ Lately I have been working mostly with React and automated testing, both unit an
 
 I have 5+ years of commercial experience working with the latest front-end technologies, delivering fully responsive, cross platform and multi-browser compatible solutions.
 
-I'm currently working for [ASOS](http://www.asos.com/) as part of the Content Platform Team and in my free time I enjoy playing the guitar and trying to stay fit.
+I'm currently working for [ASOS](https://www.asos.com/) as part of the Content Platform Team and in my free time I enjoy playing the guitar and trying to stay fit.
 
 For more info check the links below or get in touch!
 
