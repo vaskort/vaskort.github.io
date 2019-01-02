@@ -124,7 +124,7 @@ describe('User Actions', () => {
 
 A key library here is the `redux-mock-store` library which will help us mock the redux store but also to test Redux async action creators and middleware. We are initializing as normal passing any middleware that we need. We need `thunk` (so we can return promises as our value in our payload property in our actions) and `promiseMiddleware` so the expected actions types are being dispatched (`_FULFILLED, _REJECTED` etc).
 
-Inside the `beforeEach` function we reset the value of our store so we don't have any unexpected results in our assertions. If you're not familiar with all these helper functions that Jest provides you might take a quick look here: https://jestjs.io/docs/en/setup-teardown.
+Inside the `beforeEach` function we reset the value of our store so we don't have any unexpected results in our assertions. If you're not familiar with all these helper functions that Jest provides you might take a quick look here: [https://jestjs.io/docs/en/setup-teardown](https://jestjs.io/docs/en/setup-teardown).
 
 Now, let's add our actual test:
 
@@ -219,14 +219,15 @@ export default (state = {
   }
 };
 ```
-Let's talk about the key points here:  
-We set a default state in case one is not passed when the reducer is called and inside the function we return the new state depending on which action happened.  
+Let's talk about the key points here: 
 
-`GET_USERS_PENDING`: It sets `loading` to `true` so we can disable the button while we wait the data to be returned. You can show a loading icon or whatever you want using this property.  
+- We set a default state in case one is not passed when the reducer is called and inside the function we return the new state depending on which action happened.  
 
-`GET_USERS_FULFILLED`: Our data got returned successfully so we store them in the `users` property and set `loading` back to `false`.  
+- `GET_USERS_PENDING`: It sets `loading` to `true` so we can disable the button while we wait the data to be returned. You can show a loading icon or whatever you want using this property.  
 
-`GET_USERS_REJECTED`: Nothing fancy here we just set the `loading` to `false`. If this app was a real one we would most likely had a property here that stores an error message to explain to the user what was the problem. 
+- `GET_USERS_FULFILLED`: Our data got returned successfully so we store them in the `users` property and set `loading` back to `false`.  
+
+- `GET_USERS_REJECTED`: Nothing fancy here we just set the `loading` to `false`. If this app was a real one we would most likely had a property here that stores an error message to explain to the user what was the problem. 
 
 If the action type was not any of the above just return the default state. And that's basically would be our first test.
 
@@ -414,8 +415,8 @@ With the same strategy you could test the `User` component the same way with did
 
 Project's GitHub url: [https://github.com/vaskort/react-testing](https://github.com/vaskort/react-testing)
 
-[https://www.leighhalliday.com/mocking-axios-in-jest-testing-async-functions](https://www.leighhalliday.com/mocking-axios-in-jest-testing-async-functions)
-[https://www.reddit.com/r/reactjs/comments/7eiyh8/is_enzymetojson_still_required_for_jest_snapshot/](https://www.reddit.com/r/reactjs/comments/7eiyh8/is_enzymetojson_still_required_for_jest_snapshot/)
-[https://reactjs.org/docs/test-renderer.html](https://reactjs.org/docs/test-renderer.html)
-[https://jestjs.io/docs/en/api](https://jestjs.io/docs/en/api)
-[https://github.com/airbnb/enzyme/issues/1647](https://github.com/airbnb/enzyme/issues/1647)
+- [https://www.leighhalliday.com/mocking-axios-in-jest-testing-async-functions](https://www.leighhalliday.com/mocking-axios-in-jest-testing-async-functions)
+- [https://www.reddit.com/r/reactjs/comments/7eiyh8/is_enzymetojson_still_required_for_jest_snapshot/](https://www.reddit.com/r/reactjs/comments/7eiyh8/is_enzymetojson_still_required_for_jest_snapshot/)
+- [https://reactjs.org/docs/test-renderer.html](https://reactjs.org/docs/test-renderer.html)
+- [https://jestjs.io/docs/en/api](https://jestjs.io/docs/en/api)
+- [https://github.com/airbnb/enzyme/issues/1647](https://github.com/airbnb/enzyme/issues/1647)
