@@ -368,7 +368,7 @@ Some important notes on the above test are:
 ```javascript
 import { App } from './App';
 ```
-We don't really need the connected component to test it as we can pass the props manually instead of creating a mock store and passing the whole object. I was a bit sceptical in the beginning having two exports, the decorated and the undecorated one but this is something that is also recommended in the Redux docs: [https://redux.js.org/recipes/writing-tests#connected-components](https://redux.js.org/recipes/writing-tests#connected-components)
+We don't really need to test the connected component as we can pass the props manually instead of creating a mock store and passing the whole object. I was a bit sceptical in the beginning having two exports, the decorated and the undecorated one but this is something that is also recommended in the Redux docs: [https://redux.js.org/recipes/writing-tests#connected-components](https://redux.js.org/recipes/writing-tests#connected-components)
 
 - We are using the React's test renderer to create snapshots instead of enzyme's shallow. That's a personal preference as with the test renderer you don't have to use a snapshot serialiser to make your snapshots readable, you can just use the test renderer's [`toJSON` function](https://reactjs.org/docs/test-renderer.html#testrenderertojson).
 
@@ -408,7 +408,7 @@ it('renders the User correctly', () => {
 });
 ```
 
-With the same strategy you could test the `User` component the same way with did for the `App` component.
+With the same strategy you could test the `User` component the same way we did for the `App` component.
 
 
 ### Helpful links
