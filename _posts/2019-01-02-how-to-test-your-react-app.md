@@ -5,7 +5,7 @@ title: How to test your React application
 
 The reason I decided to write this blog post is because on every new project when I start writing unit tests I find it helpful to look back on older projects on how I've tested my **actions**, my **components** or my **reducers**. I'll try to organise everything in one place, this blog post.
 
-I will share you the key points of the test process. In the end you will find a [GitHub url](https://github.com/vaskort/react-testing) with the full code so you can clone and play.
+I will share the key points of the test process. In the end you will find a [GitHub url](https://github.com/vaskort/react-testing) with the full code so you can clone and play.
 
 ## The context of the app 
 
