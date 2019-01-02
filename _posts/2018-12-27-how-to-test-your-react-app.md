@@ -1,15 +1,15 @@
 ---
 layout: post
-title: The test cases you need to know when testing in React
+title: How to test your React application
 ---
 
-The reason I decided to write this blog post is because on every new project when I start writing tests I find it helpful to look back on how I've tested my **actions**, my **components** or my **reducers**. I'll try to organise everything in one place, this blog post.
+The reason I decided to write this blog post is because on every new project when I start writing unit tests I find it helpful to look back on older projects on how I've tested my **actions**, my **components** or my **reducers**. I'll try to organise everything in one place, this blog post.
 
-I will share you the key points of our test process. In the end you will find a GitHub url with the full code so you can clone and play.
+I will share you the key points of the test process. In the end you will find a [GitHub url](https://github.com/vaskort/react-testing) with the full code so you can clone and play.
 
-## The context of our app 
+## The context of the app 
 
-Let's say you have a simple application that when you press a button it triggers an async action which loads a list of users from an API. These users are then stored to our redux store. The JSX would be something like the below:
+Let's say you have a simple application where when you press a button it triggers an async action which loads a list of users from an API. These users are then stored to the redux store. The JSX would be something like the below:
 
 ```jsx
 // src/App.js
@@ -410,12 +410,12 @@ it('renders the User correctly', () => {
 With the same strategy you could test the `User` component the same way with did for the `App` component.
 
 
-
-
 ### Helpful links
 
-https://www.leighhalliday.com/mocking-axios-in-jest-testing-async-functions
-https://github.com/airbnb/enzyme/issues/1647
-https://www.reddit.com/r/reactjs/comments/7eiyh8/is_enzymetojson_still_required_for_jest_snapshot/
-https://reactjs.org/docs/test-renderer.html
-https://jestjs.io/docs/en/api
+Project's GitHub url: [https://github.com/vaskort/react-testing](https://github.com/vaskort/react-testing)
+
+[https://www.leighhalliday.com/mocking-axios-in-jest-testing-async-functions](https://www.leighhalliday.com/mocking-axios-in-jest-testing-async-functions)
+[https://www.reddit.com/r/reactjs/comments/7eiyh8/is_enzymetojson_still_required_for_jest_snapshot/](https://www.reddit.com/r/reactjs/comments/7eiyh8/is_enzymetojson_still_required_for_jest_snapshot/)
+[https://reactjs.org/docs/test-renderer.html](https://reactjs.org/docs/test-renderer.html)
+[https://jestjs.io/docs/en/api](https://jestjs.io/docs/en/api)
+[https://github.com/airbnb/enzyme/issues/1647](https://github.com/airbnb/enzyme/issues/1647)
