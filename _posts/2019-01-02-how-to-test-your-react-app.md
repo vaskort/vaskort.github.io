@@ -130,27 +130,23 @@ Now, let's add our actual test:
 
 ```javascript
 describe('getUsers action creator', () => {
-  it('tests GET_USERS action and that returns data on success', done => {
+  it('tests GET_USERS action and that returns data on success', async () => {
     mockAxios.get.mockImplementationOnce(() =>
       Promise.resolve({
-        data: [{"id": 1, "name":"Vasilis"}],
+        data: [{ id: 1, name: "Vasilis" }]
       })
     );
 
-    store.dispatch(getUsers()).then(() => {
-      const actions = store.getActions();
-      // What actions value is:
-      // [ { type: 'GET_USERS_PENDING' },
-      //   { type: 'GET_USERS_FULFILLED', payload: { data: [Array] } }
-      // ]
+    await store.dispatch(getUsers());
+    const actions = store.getActions();
+    // [ { type: 'GET_USERS_PENDING' },
+    //   { type: 'GET_USERS_FULFILLED', payload: { data: [Array] } } 
+    // ]
 
-      expect.assertions(3);
-      expect(actions[0].type).toEqual('GET_USERS_PENDING');
-      expect(actions[1].type).toEqual('GET_USERS_FULFILLED');
-      expect(actions[1].payload.data[0].name).toEqual('Vasilis');
-
-      done();
-    });
+    expect.assertions(3);
+    expect(actions[0].type).toEqual("GET_USERS_PENDING");
+    expect(actions[1].type).toEqual("GET_USERS_FULFILLED");
+    expect(actions[1].payload.data[0].name).toEqual("Vasilis");
   });
 });
 ```
@@ -160,23 +156,23 @@ So the first thing we are doing here is that we are mocking what axios.get funct
 Now that we tested the successful case let's also test when things won't go well after trying to get users from our API. It would be quite similar and would be something like this:
 
 ```javascript
-it("tests GET_USERS action and that returns an error", done => {
+it("tests GET_USERS action and that returns an error", async () => {
   mockAxios.get.mockImplementationOnce(() =>
     Promise.reject({
       error: "Something bad happened :("
     })
   );
-
-  store.dispatch(getUsers()).catch(() => {
+  
+  try { 
+    await store.dispatch(getUsers());
+  } catch {
     const actions = store.getActions();
 
     expect.assertions(3);
     expect(actions[0].type).toEqual("GET_USERS_PENDING");
     expect(actions[1].type).toEqual("GET_USERS_REJECTED");
     expect(actions[1].payload.error).toEqual("Something bad happened :(");
-
-    done();
-  });
+  }
 });
 ```
 
