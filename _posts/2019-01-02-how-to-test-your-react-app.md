@@ -28,6 +28,11 @@ Let's say you have a simple application where when you press a button it trigger
       })}
     </ul>
   )}
+  {this.props.users.error && (
+    <div>
+      A network error occured
+    </div>
+  )}
 </div>
 ```
 
@@ -194,7 +199,8 @@ Let's see our reducer before we start writing a test for it:
 // src/reducers/users.js
 export default (state = {
   users: [],
-  loading: false
+  loading: false,
+  error: false
 }, action) => {
   switch (action.type) {
     case "GET_USERS_PENDING":
@@ -208,7 +214,8 @@ export default (state = {
       });
     case "GET_USERS_REJECTED":
       return Object.assign({}, state, {
-        loading: false
+        loading: false,
+        error: true
       });
     default:
       return state;
@@ -223,7 +230,7 @@ Let's talk about the key points here:
 
 - `GET_USERS_FULFILLED`: Our data got returned successfully so we store them in the `users` property and set `loading` back to `false`.  
 
-- `GET_USERS_REJECTED`: Nothing fancy here we just set the `loading` to `false`. If this app was a real one we would most likely had a property here that stores an error message to explain to the user what was the problem. 
+- `GET_USERS_REJECTED`: Nothing fancy here we just set the `loading` to `false` and `error` to `true` so we can show the network error.
 
 If the action type was not any of the above just return the default state. And that's basically would be our first test.
 
@@ -234,7 +241,8 @@ import users from './users';
 describe('users Reducer', () => {
   const initialState = {
     users: [],
-    loading: false
+    loading: false,
+    error: false
   };
 
   it('returns the initial state when an action type is not passed', () => {
@@ -256,7 +264,8 @@ it('handles GET_USERS_PENDING as expected', () => {
 
   expect(reducer).toEqual({
     users: [],
-    loading: true
+    loading: true,
+    error: false
   });
 });
 ```
@@ -285,7 +294,8 @@ it("handles GET_USERS_FULFILLED as expected", () => {
           name: "foo"
         }
       ],
-      loading: false
+      loading: false,
+      error: false
     });
   });
 ```
@@ -343,7 +353,8 @@ describe('App Component', () => {
     props = {
       users: {
         users: [],
-        loading: false
+        loading: false,
+        error: false
       }
     };
   });
@@ -356,7 +367,7 @@ describe('App Component', () => {
 });
 ```
 
-When we run this test it will create a new snapshot. Snapshots are an additional tool to have in your testing strategy as they will "notify" you when your markup changes. In the real world there were many times where I didn't update my snapshots after I changed the markup of a component, then when my tests were failing it was like an extra confirmation step if I really wanted that markup change.
+When we run this test it will create a new snapshot. Snapshots are an additional tool to have in your testing strategy as they will "notify" you when your markup changes. In the real world there were many times where I didn't update my snapshots after I changed the markup of a component, then when my tests were failing it was like an extra confirmation step if I really wanted that markup change. Apart from getting notified when your markup changes you can get more value from snapshots. You can assert that an error copy is shown when a network error occurs.
 
 Some important notes on the above test are:
 
@@ -368,7 +379,18 @@ We don't really need to test the connected component as we can pass the props ma
 
 - We are using the React's test renderer to create snapshots instead of enzyme's shallow. That's a personal preference as with the test renderer you don't have to use a snapshot serialiser to make your snapshots readable, you can just use the test renderer's [`toJSON` function](https://reactjs.org/docs/test-renderer.html#testrenderertojson).
 
-In our second test we'll use Enzyme's shallow. We are going to mock the getUsers function and make sure its being called when we click the button.
+Now let's create another snapshot test where we will test that the expected error copy was shown:
+
+```
+it('renders an error message when a network error occurs', () => {
+  props.users.error = true;
+  const tree = renderer.create(<App {...props} />)
+
+  expect(tree.toJSON()).toMatchSnapshot();
+});
+```
+
+In our third test we'll use Enzyme's shallow. We are going to mock the getUsers function and make sure its being called when we click the button.
 
 ```javascript
 it('calls the getUsers function when the button is clicked', () => {
