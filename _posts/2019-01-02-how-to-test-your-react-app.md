@@ -381,7 +381,7 @@ We don't really need to test the connected component as we can pass the props ma
 
 Now let's create another snapshot test where we will test that the expected error copy was shown:
 
-```
+```javascript
 it('renders an error message when a network error occurs', () => {
   props.users.error = true;
   const tree = renderer.create(<App {...props} />)
