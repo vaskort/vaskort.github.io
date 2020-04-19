@@ -3,13 +3,13 @@ layout: post
 title: How to test your React application
 ---
 
-The reason I decided to write this blog post is because on every new project when I start writing unit tests I find it helpful to look back on older projects on how I've tested my **actions**, my **components** or my **reducers**. I'll try to organise everything in one place, this blog post.
+Whenever I start a new React project, I always find it helpful to look back at my previous projects to remind me how best to test **actions**, **components** and **reducers**. I’ll try to organise everything in one place — this blog post.
 
-I will share the key points of the test process. In the end you will find a [GitHub url](https://github.com/vaskort/react-testing) with the full code so you can clone and play.
+I will share the key points of the test process. All code examples are featured in this [dedicated repository](https://github.com/vaskort/react-testing), which you can clone and try out for yourself.
 
 ## The context of the app 
 
-Let's say you have a simple application where when you press a button it triggers an async action which loads a list of users from an API. These users are then stored to the redux store. The JSX would be something like the below:
+Let’s say you have a simple application that fetches a list of users from an API at the click of a button. These users are then stored to the Redux store. The JSX would be something like the below:
 
 ```jsx
 // src/App.js
@@ -30,7 +30,7 @@ Let's say you have a simple application where when you press a button it trigger
   )}
   {this.props.users.error && (
     <div>
-      A network error occured
+      A network error occurred
     </div>
   )}
 </div>
@@ -69,10 +69,7 @@ export default (state = {}, action) => {
 Pretty straight forward right? But how would you test everything in this scenario?
 Let's start by testing the action creator.
 
-
 ## Testing the Action Creator
-
-Let see again the action creator:
 
 ```javascript
 // src/actions/users.js
@@ -85,17 +82,15 @@ export const getUsers = () => dispatch => {
   });
 };
 ```
+There are two important things about this code — that I like using the `axios` package and that I like using the `redux-promise-middleware package`.
 
-There are two important things on this code.
-One is that I like using the `axios` package and two that I like using the `redux-promise-middleware` package.  
+Whenever you dispatch an action with a promise as its payload using `redux-promise-middleware`, it will immediately dispatch `GET_USERS_PENDING` and when your promise is finally settled it will dispatch either `GET_USERS_FULFILLED` or `GET_USERS_REJECTED`. That helps writing less code as you don’t have to explicitly write action creators for these states.
 
-What `redux-promise-middleware` basically is doing is whenever you dispatch a promise as the value of the payload property of the action then it will immediately dispatch `GET_USERS_PENDING` and when your promise is finally settled it will dispatch either `GET_USERS_FULFILLED` or `GET_USERS_REJECTED`. I like using it because it helps me not to write boilerplate code.
+We’ll use Facebook’s Jest to write our tests because it gives you this ‘no-configuration’ experience, and it’s easier to mock libraries like `axios`.
 
-We will use Facebook's Jest to write our tests because it gives you this "no-configuration" experience as Facebook claims but also because it's easier to mock libraries like `axios`.
+What we need to do now is to mock `axios`. We don’t really want to fire an http request to our servers even if we are pointing to a development environment. It can confuse our analytics, will add unnecessary traffic and also make our tests run slower.
 
-What we need to do now is to mock `axios`. Why? Because we don't really want to fire an http request to our servers even if we are pointing to a development environment. It can mess our analytics, it will add unnecessary traffic but also it will make our tests run slower.
-
-There is a quick way to mock libraries in Jest, we just have to create an `axios.js` file under `src/__mocks__`:
+There’s a quick way to mock libraries in Jest, we just have to create an `axios.js` file under `src/__mocks__`:
 
 ```javascript
 // axios.js
@@ -104,20 +99,21 @@ export default {
 };
 ```
 
-We can then mock what axios.get functions returns differently inside our tests as every test would require. The same thing would be if you wanted to mock the `post` method of `axios`, just add a new method returning whatever you want.
+Then we can mock what `axios.get` function returns differently inside our tests depending on our test case. If you want to mock the `post` method of `axios`, just add a new method called `post` and return whatever you want.
 
-Now we are ready to create our test file to test the action creator, `src/actions/users.test.js`. The first part of the file would be something like:
+Now we’re ready to create our test file to test the action creator, `src/actions/users.test.js`. The first part of the file would be something like:
 
 ```javascript
+// src/actions/users.test.js 
 import mockAxios from "axios";
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import promiseMiddleware from 'redux-promise-middleware';
+import configureMockStore from "redux-mock-store";
+import thunk from "redux-thunk";
+import promiseMiddleware from "redux-promise-middleware";
 import { getUsers } from "./users";
 
 const mockStore = configureMockStore([thunk, promiseMiddleware()]);
 
-describe('User Actions', () => {
+describe("User Actions", () => {
   let store;
 
   beforeEach(() => {
@@ -127,15 +123,15 @@ describe('User Actions', () => {
   });
 ```
 
-A key library here is the `redux-mock-store` library which will help us mock the redux store but also to test Redux async action creators and middleware. We are initializing as normal passing any middleware that we need. We need `thunk` (so we can return promises as our value in our payload property in our actions) and `promiseMiddleware` so the expected actions types are being dispatched (`_FULFILLED, _REJECTED` etc).
+A key library here is the `redux-mock-store` library, which will help us mock the Redux store but also to test Redux async action creators and middleware. We’re initialising as normal, passing any middleware that we need. We need `thunk`(so we can return promises as our value in our payload property in our actions) and `promiseMiddleware` so the expected actions types are being dispatched (`_FULFILLED`, `_REJECTED` etc).
 
-Inside the `beforeEach` function we reset the value of our store so we don't have any unexpected results in our assertions. If you're not familiar with all these helper functions that Jest provides you might take a quick look here: [https://jestjs.io/docs/en/setup-teardown](https://jestjs.io/docs/en/setup-teardown).
+Inside the `beforeEach` function we reset the value of our store, so we don’t have any unexpected results in our assertions. If you’re not familiar with the helper functions that Jest provides, you might want to look here: [https://jestjs.io/docs/en/setup-teardown](https://jestjs.io/docs/en/setup-teardown).
 
 Now, let's add our actual test:
 
 ```javascript
-describe('getUsers action creator', () => {
-  it('tests GET_USERS action and that returns data on success', async () => {
+describe("getUsers action creator", () => {
+  it("dispatches GET_USERS action and returns data on success", async () => {
     mockAxios.get.mockImplementationOnce(() =>
       Promise.resolve({
         data: [{ id: 1, name: "Vasilis" }]
@@ -144,8 +140,8 @@ describe('getUsers action creator', () => {
 
     await store.dispatch(getUsers());
     const actions = store.getActions();
-    // [ { type: 'GET_USERS_PENDING' },
-    //   { type: 'GET_USERS_FULFILLED', payload: { data: [Array] } } 
+    // [ { type: "GET_USERS_PENDING" },
+    //   { type: "GET_USERS_FULFILLED", payload: { data: [Array] } } 
     // ]
 
     expect.assertions(3);
@@ -155,13 +151,12 @@ describe('getUsers action creator', () => {
   });
 });
 ```
+The first thing we’re doing here is mocking what axios.get function will return in this particular test. We’re using Jest’s [mockImplementationOnce](https://jestjs.io/docs/en/mock-functions#mock-implementations) to return a Promise.resolve along with some mock data. Then we’re dispatching our action creator (`getUsers`) and making any assertions we feel are necessary. We expect the action types but also the data that the second action type is returning. Notice we used [`getActions`](https://github.com/dmitry-zaets/redux-mock-store#asynchronous-actions), this is a function from `redux-mock-store` that gives you all the action types that have been dispatched.
 
-So the first thing we are doing here is that we are mocking what axios.get function will return in this particular test. We are using Jest's [mockImplementationOnce](https://jestjs.io/docs/en/mock-functions#mock-implementations) to return a Promise.resolve along with some mock data. Then we are dispatching our action creator (`getUsers`) and inside the `then` function of the promise we make any assertions we feel are necessary. In our case we expect the action types but also the data that the second action type is returning. Notice we used [`getActions`](https://github.com/dmitry-zaets/redux-mock-store#asynchronous-actions), this is a function from `redux-mock-store` that gives you all the action types that got dispatched.
-
-Now that we tested the successful case let's also test when things won't go well after trying to get users from our API. It would be quite similar and would be something like this:
+Now that we have tested our success state, we also need to test what happens when things don’t go so well and we receive an error state. It would be quite similar and something like this:
 
 ```javascript
-it("tests GET_USERS action and that returns an error", async () => {
+it("dispatches GET_USERS action and returns an error", async () => {
   mockAxios.get.mockImplementationOnce(() =>
     Promise.reject({
       error: "Something bad happened :("
@@ -181,7 +176,7 @@ it("tests GET_USERS action and that returns an error", async () => {
 });
 ```
 
-The only difference is that we are mocking our implementation differently and notice using `catch` instead of `then` because our Promise gets rejected at this case.
+The only difference is that we’re mocking our implementation differently and running the assertions inside the `catch` block.
 
 Hopefully at this stage when we run `yarn test` or `npm test` we'll see something like this in the console:
 
@@ -189,11 +184,9 @@ Hopefully at this stage when we run `yarn test` or `npm test` we'll see somethin
 
 ## Testing the Reducer
 
-Testing our reducers is much more straightforward comparing to testing actions but its maybe more important for our application because its where our state changes.
+This is much more straightforward compared to testing actions, but arguably more important for our application because it’s where our state changes.
 
-The main idea is to assert what the reducer returns when a specific action and is being passed.
-
-Let's see our reducer before we start writing a test for it:
+The main idea is to assert what the reducer returns when a specific action is being passed.
 
 ```javascript
 // src/reducers/users.js
@@ -222,17 +215,18 @@ export default (state = {
   }
 };
 ```
+
 Let's talk about the key points here: 
 
-- We set a default state in case one is not passed when the reducer is called and inside the function we return the new state depending on which action happened.  
+- We set a default state in case one is not passed when the reducer is called and inside the function we return the new state depending on which action happened.
 
-- `GET_USERS_PENDING`: It sets `loading` to `true` so we can disable the button while we wait the data to be returned. You can show a loading icon or whatever you want using this property.  
+- `GET_USERS_PENDING`: It sets `loading` to `true` so we can disable the button while we wait for the data to be returned. You can show a loading icon or whatever you want using this property. 
 
-- `GET_USERS_FULFILLED`: Our data got returned successfully so we store them in the `users` property and set `loading` back to `false`.  
+- `GET_USERS_FULFILLED`:  Our data was returned successfully so we store them in the `users` property and set `loading` back to `false`.
 
-- `GET_USERS_REJECTED`: Nothing fancy here we just set the `loading` to `false` and `error` to `true` so we can show the network error.
+- `GET_USERS_REJECTED`: We set the `loading` to `false` and `error` to `true` so we can show the network error.
 
-If the action type was not any of the above just return the default state. And that's basically would be our first test.
+As this is the simplest solution, this will be our first test.
 
 ```javascript
 // src/reducers/users.test.js
@@ -269,7 +263,8 @@ it('handles GET_USERS_PENDING as expected', () => {
   });
 });
 ```
-No surprises here, we expect the `loading` property to have changed to true (and the `users` to still be empty).
+
+We expect the `loading` property to have changed to `true` (and the `users` to still be empty).
 
 The one for `GET_USERS_FULFILLED` action would be:
 
@@ -300,17 +295,17 @@ it("handles GET_USERS_FULFILLED as expected", () => {
   });
 ```
 
-We pass the payload in our action object and we expect this to be what the reducer returns in the users property. We also expect the `loading` property to have "switched" to `false`.
+We pass the payload in our action object and we expect this to be what the reducer returns in the users property. We also expect the `loading` property to have ‘switched’ to `false`.
 
 I'll let you write the `GET_USERS_REJECTED` test yourself :grimacing:.
 
-Now that we tested our **reducer** and our **actions** there's only one thing needs to be tested, our component.
+Now that we have tested our **reducer** and our **actions**, there’s only one thing that needs to be tested — our component.
 
 ## Testing the Component
 
-Before starting with the component testing we need to add some configuration.
+Before starting this we need to add some configuration.
 
-Generally for testing components I prefer using Enzyme. It provides a clean API that is similar to jQuery.
+For testing components I prefer using Enzyme. It provides a clean API that is similar to jQuery.
 
 So let's install `enzyme-adapter-react-16` and `enzyme`.
 
@@ -318,7 +313,7 @@ So let's install `enzyme-adapter-react-16` and `enzyme`.
 yarn add enzyme-adapter-react-16 enzyme --dev
 ```
 
-At this point we need a setup file for our tests. In a project that is not a `create-react-app` you can define the path of this file in your package.json like below: 
+At this point we need a setup file for our tests. In a project that is not a `create-react-app`,you can define the path of this file in your package.json like below:
 
 ```javascript
 "jest": {
@@ -336,11 +331,12 @@ import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 ```
 
-That is because Enzyme requires an adapter to be configured. Take a look at the docs if you want more info about this: https://airbnb.io/enzyme/docs/installation/index.html
+As well as installing Enzyme, you also need to install an adapter for the version of React you’re using. In this case, we’re using React version 16. For more information click here: https://airbnb.io/enzyme/docs/installation/index.html
 
-At this point we should be ready to write our first component test. Let's create a file under src with name App.test.js and add the following:
+We should now be ready to write our first component test. Let’s create a file under src with name App.test.js and add the following:
 
 ```javascript
+// src/App.test.js
 import React from 'react';
 import { App } from './App';
 import { shallow } from 'enzyme';
@@ -367,19 +363,21 @@ describe('App Component', () => {
 });
 ```
 
-When we run this test it will create a new snapshot. Snapshots are an additional tool to have in your testing strategy as they will "notify" you when your markup changes. In the real world there were many times where I didn't update my snapshots after I changed the markup of a component, then when my tests were failing it was like an extra confirmation step if I really wanted that markup change. Apart from getting notified when your markup changes you can get more value from snapshots. You can assert that an error copy is shown when a network error occurs.
+When we run this test, it will create a new snapshot. Snapshots are an additional tool to have in your testing strategy as they will ‘notify’ you when your markup changes. There have been times when I haven’t updated my snapshots after changing the markup of a component. When my tests were failing, it was an extra confirmation step if I really wanted that markup change. Aside from being notified, when your markup changes you can get more value from snapshots. You can assert that an error copy is shown when a network error occurs.
 
 Some important notes on the above test are:
 
-- We are importing the named App component and not the default export.  
+- We are importing the named App component and not the default export.
+
 ```javascript
 import { App } from './App';
 ```
-We don't really need to test the connected component as we can pass the props manually instead of creating a mock store and passing the whole object. I was a bit sceptical in the beginning having two exports, the decorated and the undecorated one but this is something that is also recommended in the Redux docs: [https://redux.js.org/recipes/writing-tests#connected-components](https://redux.js.org/recipes/writing-tests#connected-components)
 
-- We are using the React's test renderer to create snapshots instead of enzyme's shallow. That's a personal preference as with the test renderer you don't have to use a snapshot serialiser to make your snapshots readable, you can just use the test renderer's [`toJSON` function](https://reactjs.org/docs/test-renderer.html#testrenderertojson).
+We don’t really need to test the connected component as we can pass the props manually instead of creating a mock store and passing the whole object. I was a little sceptical about having two exports — the decorated and the undecorated one — but this is something that is also recommended in the Redux docs: [https://redux.js.org/recipes/writing-tests#connected-components](https://redux.js.org/recipes/writing-tests#connected-components)
 
-Now let's create another snapshot test where we will test that the expected error copy was shown:
+- We’re using the React’s test renderer to create snapshots instead of Enzyme’s shallow. That’s a personal preference — as with the test renderer you don’t have to use a snapshot serialiser to make your snapshots readable, you can use the test renderer’s [`toJSON` function](https://reactjs.org/docs/test-renderer.html#testrenderertojson).
+
+Now let’s create another snapshot test where we’ll test that the expected error copy was shown:
 
 ```javascript
 it('renders an error message when a network error occurs', () => {
@@ -390,20 +388,20 @@ it('renders an error message when a network error occurs', () => {
 });
 ```
 
-In our third test we'll use Enzyme's shallow. We are going to mock the getUsers function and make sure its being called when we click the button.
+In our third test we’ll use Enzyme’s shallow. We’re going to mock the getUsers function and make sure it’s being called when we click the button.
 
 ```javascript
-it('calls the getUsers function when the button is clicked', () => {
+it("calls the getUsers function when the button is clicked", () => {
   props.getUsers = jest.fn();
   const wrapper = shallow(<App {...props} />);
-  const spy = jest.spyOn(wrapper.instance().props, 'getUsers');
+  const spy = jest.spyOn(wrapper.instance().props, "getUsers");
 
-  wrapper.find('button').simulate('click');
+  wrapper.find("button").simulate("click");
   expect(spy).toHaveBeenCalled();
 });
 ```
 
-The code should be self explanatory but the key points are:
+The code should be self-explanatory but the key points are summarised below:
 
 - Mocking `getUsers` with Jest's `jest.fn()`.
 - Spying `getUsers` (note the correct syntax there).
@@ -413,21 +411,24 @@ The code should be self explanatory but the key points are:
 Now let's test that the `User` component get's rendered when we have some users.
 
 ```javascript
-it('renders the User correctly', () => {
+it("renders the User correctly", () => {
   props.users.users = [
     {
       id: 1,
-      name: 'foo'
+      name: "foo"
     }
   ]
   const wrapper = shallow(<App {...props} />);
 
-  expect(wrapper.find('User').length).toBe(1);
+  expect(wrapper.find("User").length).toBe(1);
 });
 ```
 
-With the same strategy you could test the `User` component the same way we did for the `App` component.
+You could test the `User` component the same way we did for the `App` component.
 
+## Summary
+
+Theoretically, you now know how to test most aspects of your React application. I believe it would be valuable to clone the [repository](https://github.com/vaskort/react-testing) and try to write some more tests, create new snapshots or even try to break it. Have fun!
 
 ### Helpful links
 
