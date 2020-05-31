@@ -3,7 +3,7 @@ layout: post
 title: A trap focus function you need for your modals
 ---
 
-As Accessibility (or a11y if you're that cool :P) gets more and more important there are some functions that you would find useful in every front end project you work on. One of them is the trap focus function. The function which allows the focus to happen only to the children of a container, in our example to our modal.
+As Accessibility gets more and more important there are some functions that you would find useful in every front end project you work on. One of them is the trap focus function. The function which allows the focus to happen only to the children of a container, in our example to our modal.
 
 ## TL;DR
 
