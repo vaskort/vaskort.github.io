@@ -104,7 +104,7 @@ If that's not the case and/or you want to be 100% sure that it should work you c
 
 ## Conclusion
 
-I hope this post would help you improve the accessibility of your page. If you used this approach to trap focus in a modal let me know what you think in the comments.
+I hope this post would help you towards improving the accessibility of your page. Accessibility can be hard to nail down correctly especially if you start testing in Voice Over tools as it can be daunting at first but you quickly get the grasp of them. Good luck!
 
 ## Useful links
 
