@@ -7,8 +7,9 @@ As Accessibility gets more and more important there are some functions that you 
 
 ## TL;DR
 
-- [Trap focus function on GitHub](https://github.com/vaskort/trap-focus/blob/master/src/Modal/Modal.js#L7-L48)
+- [Full example on CodeSandbox (React)](https://codesandbox.io/s/github/vaskort/trap-focus)
 - [Full example on GitHub (React)](https://github.com/vaskort/trap-focus)
+- [Trap focus function on GitHub](https://github.com/vaskort/trap-focus/blob/master/src/Modal/Modal.js#L7-L56)
 - [Plain JS/HTML example on Codepen](https://codepen.io/vaskort/pen/LYpwjoj)
 
 ## Intro
@@ -108,7 +109,9 @@ I hope this post would help you towards improving the accessibility of your page
 
 ## Useful links
 
-- [Full example on Github (React)](https://github.com/vaskort/trap-focus)  
-- [Plain JS/HTML on  Codepen](https://codepen.io/vaskort/pen/LYpwjoj)
+- [Full example on CodeSandbox (React)](https://codesandbox.io/s/github/vaskort/trap-focus)
+- [Full example on GitHub (React)](https://github.com/vaskort/trap-focus)
+- [Trap focus function on GitHub](https://github.com/vaskort/trap-focus/blob/master/src/Modal/Modal.js#L7-L56)
+- [Plain JS/HTML example on Codepen](https://codepen.io/vaskort/pen/LYpwjoj)
 - [W3.org - Modal Example](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html)
 - [Giving focus to buttons diagram on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#Clicking_and_focus)
