@@ -11,7 +11,9 @@ layout: default
   <div class="entry">
     {{ content }}
   </div>
-  <div>
-    {% include newsletter.html %}
-  </div>
+  {% if page.url == "/" %}
+    <div>
+      {% include newsletter.html %}
+    </div>
+  {% endif %}
 </article>
