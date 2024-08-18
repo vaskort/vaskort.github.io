@@ -93,7 +93,6 @@ p {
 
 a {
   color: $jekyllLinkcolor;
-  text-decoration: none;
 	cursor: pointer;
   &:hover, &:active, &:focus {
     color: $jekyllLinkcolorHover;
@@ -352,6 +351,19 @@ footer {
     }
   }
 }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap; /* Added for text to not break into new line */
+}
+
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start

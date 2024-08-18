@@ -3,11 +3,9 @@ layout: page
 title: About
 <!-- permalink: / -->
 ---
-### About me
+# About me
 
 Hi, I'm Vasilis, a front-ender from Athens, Greece currently based in London.  
-
-### More Information
 
 I enjoy building beautiful UIs with React and sometimes working on the server with Node.
 
@@ -17,6 +15,6 @@ I'm currently working for [ASOS](https://www.asos.com/) as part of the Web Team 
 
 For more info about me check the links below or get in touch!
 
-### Contact me
+## Contact me
 
 [vaskort@gmail.com](mailto:vaskort@gmail.com)
