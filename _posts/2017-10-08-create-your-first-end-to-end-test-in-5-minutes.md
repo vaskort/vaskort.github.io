@@ -23,13 +23,13 @@ Also I used [Cucumber.js](https://cucumber.io/) to write the acceptance/end-to-e
 
 So lets get started, lets install ChimpJS with npm (its better to install it globally).
 
-{% highlight bash %}
+```bash
   $ npm install -g chimp
-{% endhighlight %}
+```
 
 The folder structure that we need is the following:
 
-{% highlight bash %}
+```bash
   chimp-test
   │
   └───features
@@ -38,13 +38,13 @@ The folder structure that we need is the following:
       └───steps
           │   test.js
 
-{% endhighlight %}
+```
 
 ### Feature file
 
 Now let's define the user story in our feature file. Let's try to test something very simple in the [ASOS](http://www.asos.com) homepage, that whatever value we add in the search input, after clicking the search button, it would exist as a title in the following product list page.
 
-{% highlight gherkin %}
+```gherkin
   # features/test.feature
   @watch
 
@@ -57,7 +57,7 @@ Now let's define the user story in our feature file. Let's try to test something
     When the ASOS page loads
     And I fill the search term
     Then I should see the search term on top of the next page
-{% endhighlight %}
+```
 
 Check a very useful and detailed article on how to to create a feature file [here](http://www.bbc.co.uk/blogs/internet/entries/ff14236d-098a-3565-b678-ff4ba5776a5f).
 
@@ -69,7 +69,7 @@ At this point we can run `chimp --watch` in our root folder (`chimp-test`) so we
 
 Create the `test.js` file like the following:  
 
-{% highlight javascript %}
+```javascript
   // steps/test.js
   module.exports = function(){
     'use strict';
@@ -86,39 +86,41 @@ Create the `test.js` file like the following:
       return 'pending';
     });
   };
-{% endhighlight %}
+```
 
-##### First Step
+#### First Step
 
 The next step is to check the documentation of [Webdriver](http://webdriver.io/api.html) and write our code inside every step.
-In the **first step** we want to just navigate to the ASOS homepage: 
-{% highlight javascript %}
+In the **first step** we want to just navigate to the ASOS homepage:
+
+```javascript
 this.Given(/^the ASOS page loads$/, function () {
   browser.url('http://www.asos.com');
 });
-{% endhighlight %}
+```
 
-##### Second Step
+#### Second Step
 
 In the **second step** we want to add a value to the search input and click the search button.
-{% highlight javascript %}
+
+```javascript
 this.When(/^I fill the search term$/, function () {
   browser.setValue('.search-box', 'Jackets');
   browser.click('div.search a.go');    
 });
-{% endhighlight %}
+```
 
-##### Third Step
+#### Third Step
 
 In the **third and last step** we want to make a simple assertion to check that our search term exist as a title on top of the list page.
 
-{% highlight javascript %}
+```javascript
 this.Then(/^I should see the search term on top of the next page$/, function () {
   var searchTerm = '.search-term';
   browser.waitForVisible(searchTerm);
   expect(browser.getText(searchTerm)).toEqual('Jackets');
 });
-{% endhighlight %}
+```
 
 Hopefully if we rerun `chimp --watch` our tests should pass and we should see something like the following:
 
@@ -128,9 +130,7 @@ Congratulations! You made your first simple end-to-end test!
 Leave a comment if you want me to cover the rest of the bullet points listed in the beginning of the article.
 
 ### Notes - Links
+
 Full code on GitHub: [https://github.com/vaskort/chimp-test](https://github.com/vaskort/chimp-test)  
 Chimp JS documentation: [https://chimp.readme.io/](https://chimp.readme.io/)  
 Chimp JS Slack channel: [http://community.xolv.io/](http://community.xolv.io/)
-
-
-

@@ -26,7 +26,7 @@ At first we define our function that takes two params, the first one is the elem
 
 Then we create an array with all the focusable elements of our modal.
 
-```js
+```javascript
 const trapFocus = ((element, prevFocusableElement = document.activeElement) => {
     const focusableEls = Array.from(
       element.current.querySelectorAll(
@@ -36,7 +36,8 @@ const trapFocus = ((element, prevFocusableElement = document.activeElement) => {
 ```
 
 Next, we "grab" the first and the last item from the array of the focusable elements as we will need them later and we declare a `currentFocus` variable to store the item that has focus. And after the variable declaration we focus on the first element of the modal and update the `currentFocus` variable.
-```js
+
+```javascript
 const firstFocusableEl = focusableEls[0];
 const lastFocusableEl = focusableEls[focusableEls.length - 1];
 let currentFocus = null;
@@ -45,8 +46,9 @@ firstFocusableEl.focus();
 currentFocus = firstFocusableEl;
 ```
 
-Inside this function we declare the `handleFocus` function. It includes the main functionality of our trap focus function, follow the comments as it's pretty self-explanatory.
-```js
+Inside this function we declare the handleFocus function. It includes the main functionality of our trap focus function, follow the comments as it's pretty self-explanatory.
+
+```javascript
 const handleFocus = e => {
   e.preventDefault();
   /* if the focused element "lives" in your modal container
@@ -71,13 +73,14 @@ const handleFocus = e => {
 ```
 
 We attach the `handleFocus` function to the document whenever a focus event is fired. Notice that you will not be able to listen to this event on `document` if you don't set the `useCapture` parameter to `true`.
-```js
+
+```javascript
 document.addEventListener("focus", handleFocus, true);
 ```
 
 Finally we return a function the will help us clear the `focus` event from the `document` but also focus to the element that had the focus before the modal was open. Usually a button that opens the modal.
 
-```js
+```javascript
 return {
   onClose: () => {
     document.removeEventListener("focus", handleFocus, true);
