@@ -3,6 +3,8 @@ layout: null
 ---
 
 User-agent: *
+Disallow: /ErgasiaPDE/
+
 Allow: /
 
 Sitemap: {{ site.url }}/sitemap.xml
